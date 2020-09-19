@@ -7,4 +7,4 @@ def talk_to_me(update, context):
     print(user_text)
     update.message.reply_text(user_text)
 
-    return None
+    return States.START

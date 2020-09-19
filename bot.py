@@ -108,7 +108,7 @@ def full_moon_dialogue(update, context):
         reply_next_full_moon = ephem.next_full_moon(date_now)
         update.message.reply_text(reply_next_full_moon)
     else:
-        update.message.reply_text('фиг тебе')
+        update.message.reply_text('неа')
 
 
 def main():
