@@ -3,14 +3,12 @@ from telegram.ext import (
     CommandHandler,
     MessageHandler,
     Filters,
-    ConversationHandler,
-    CallbackQueryHandler,
+    RegexHandler
 )
 import logging
 
 # from config import TELEGRAM_BOT_ID
 import config
-from states import States
 from handlers.greeting import greeting
 from handlers.talk_to_me import talk_to_me
 from handlers.planet_dialogue import planet_dialogue
@@ -25,33 +23,22 @@ logging.basicConfig(
 
 
 def main():
-    updater = Updater(
+    mybot = Updater(
         token=config.TOKEN,
         use_context=True
     )
-    dispatcher = updater.dispatcher
 
-    conv_handler = ConversationHandler(
-        entry_points=[CommandHandler('start', greeting)],
+    dp = mybot.dispatcher
+    dp.add_handler(CommandHandler('Start', greeting))
+    dp.add_handler(CommandHandler('Planet', planet_dialogue))
+    dp.add_handler(CommandHandler('Wordcount', wordcount_message))
+    dp.add_handler(RegexHandler(pattern=r'Когда ближайшее полнолуние?',
+                                callback=full_moon_dialogue))
+    dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
-        states={
-
-            States.START: [CommandHandler('start', greeting)],
-            States.PLANET: [CommandHandler('planet', planet_dialogue)],
-            States.WORDCOUNT: [CommandHandler('wordcount', wordcount_message)],
-            States.FULL_MOON: [MessageHandler(Filters.text, full_moon_dialogue)],
-            States.ECHO: [MessageHandler(Filters.text, talk_to_me)]
-        },
-
-        fallbacks=[
-            CommandHandler('start', greeting)
-        ]
-    )
-
-    dispatcher.add_handler(conv_handler)
-
-    updater.start_polling()
-    updater.idle()
+    logging.info('Бот стартовал')
+    mybot.start_polling()
+    mybot.idle()
 
 
 if __name__ == "__main__":

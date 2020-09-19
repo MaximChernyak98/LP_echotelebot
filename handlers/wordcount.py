@@ -1,7 +1,4 @@
-import datetime
 import re
-
-from states import States
 
 
 def wordcount_message(update, context):
@@ -37,5 +34,3 @@ def wordcount_message(update, context):
                                       f'{", ".join(ban_words)}')
     else:
         update.message.reply_text('В строке не найдены слова')
-
-    return States.FULL_MOON

@@ -2,8 +2,6 @@ import datetime
 
 import ephem
 
-from states import States
-
 
 def full_moon_dialogue(update, context):
     if update.message.text == 'Когда ближайшее полнолуние?':
@@ -12,4 +10,3 @@ def full_moon_dialogue(update, context):
         update.message.reply_text(reply_next_full_moon)
     else:
         update.message.reply_text('фиг тебе')
-    return States.ECHO

@@ -2,8 +2,6 @@ import datetime
 
 import ephem
 
-from states import States
-
 
 def planet_dialogue(update, context):
     date_now = datetime.date.today().strftime("%y/%m/%d")
@@ -37,5 +35,3 @@ def planet_dialogue(update, context):
     constellation_text = ', '.join(ephem.constellation(planet_for_search))
     update.message.reply_text(
         'This planet is now in constellations ' + constellation_text)
-
-    return States.WORDCOUNT
