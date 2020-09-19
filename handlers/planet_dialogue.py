@@ -22,7 +22,7 @@ def planet_dialogue(update, context):
     if planet_name in planets_list:
         if planet_name == 'Earth':
             update.message.reply_text('We are on Earth, from our point of view, '
-                                      'we are not in a constellation')
+                                      'we are not in a constellation ')
         else:
             try:
                 planet_for_search = getattr(ephem, planet_name)()
