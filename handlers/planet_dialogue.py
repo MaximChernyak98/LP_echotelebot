@@ -1,12 +1,13 @@
+#standart module
 import datetime
 
+#pip module
 import ephem
-
 
 def planet_dialogue(update, context):
 
     date_now = datetime.date.today().strftime("%y/%m/%d")
-    planet_name_b = update.message.text.split('/planet')[1].strip()
+    planet_name_b = context.args[1]
     planet_name = planet_name_b.capitalize()
     planets_list = [
         'Mercury',

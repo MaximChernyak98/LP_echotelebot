@@ -1,13 +1,17 @@
+# standart module
+import logging
+
+# pip module
 from telegram.ext import (
     Updater,
     CommandHandler,
     MessageHandler,
     Filters,
-    RegexHandler
+    RegexHandler,
+    ReplyKeyboardMarkup
 )
-import logging
 
-# from config import TELEGRAM_BOT_ID
+# from repo files
 import config
 from handlers.greeting import greeting
 from handlers.talk_to_me import talk_to_me

@@ -1,5 +1,7 @@
+#standart module
 import datetime
 
+#pip module
 import ephem
 
 
