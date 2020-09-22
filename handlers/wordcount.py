@@ -2,18 +2,17 @@ import re
 
 
 def wordcount_message(update, context):
-    user_message = update.message.text.split('/wordcount')[1].strip()
-    words_list = user_message.split(" ")
+    words_list_from_user = context.args
     good_words = []
     ban_words = []
     # separating understandable words from symbols
-    for word in words_list:
+    for word in words_list_from_user:
         word = re.sub('[, .!?]', '', word)
         if word.isalpha():
             good_words.append(word)
         else:
             ban_words.append(word)
-    if user_message:
+    if words_list_from_user:
         # choosing the correct ending
         num_words = len(good_words)
         num_w_rem_10 = num_words % 10
@@ -30,7 +29,7 @@ def wordcount_message(update, context):
         # print result
         update.message.reply_text(f'Введено {len(good_words)} {text_words}')
         if ban_words:
-            update.message.reply_text('Данные слова не засчитаны'
+            update.message.reply_text('Данные слова не засчитаны - '
                                       f'{", ".join(ban_words)}')
     else:
         update.message.reply_text('В строке не найдены слова')
