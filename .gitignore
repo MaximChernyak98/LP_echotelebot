@@ -2,9 +2,9 @@
 *.pyc
 config.py
 *.vscode
-*.txt
 *.csv
 .vscode/
+.idea/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

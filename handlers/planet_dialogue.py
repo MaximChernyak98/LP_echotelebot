@@ -1,14 +1,14 @@
-#standart module
+# standart module
 import datetime
 
-#pip module
+# pip module
 import ephem
 
-def planet_dialogue(update, context):
 
+def planet_dialogue(update, context):
     date_now = datetime.date.today().strftime("%y/%m/%d")
-    planet_name_b = context.args[1]
-    planet_name = planet_name_b.capitalize()
+    planet_name_from_user = context.args[1]
+    planet_name = planet_name_from_user.capitalize()
     planets_list = [
         'Mercury',
         'Venus',
@@ -22,8 +22,9 @@ def planet_dialogue(update, context):
     # Search planet in planet list
     if planet_name in planets_list:
         if planet_name == 'Earth':
-            update.message.reply_text('We are on Earth, from our point of view, '
-                                      'we are not in a constellation ')
+            update.message.reply_text(
+                'We are on Earth, from our point of view, '
+                'we are not in a constellation ')
         else:
             try:
                 planet_for_search = getattr(ephem, planet_name)()

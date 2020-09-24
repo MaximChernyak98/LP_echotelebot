@@ -1,4 +1,4 @@
-#standart module
+# standart module
 import re
 
 
